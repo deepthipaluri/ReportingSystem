@@ -1,6 +1,6 @@
 Project Proposal on Reporting System
 Author: Deepthi Paluri
-1.  Introduction
+1.	Introduction
 The project proposal is to develop a Software as a Service (SaaS) type model where associated data and software are centrally hosted over cloud services. This application will be utilized to develop a highly flexible tool to record and report the daily activity of a prekindergarten aged child in a classroom setting. The software application will feature several aspects of the early childhood developmental milestones such as daily monthly and yearly activity reports, participation levels, reminders for parents, and a yearly performance report. The software will also enable online backups, point-in-time recovery of the child’s progress, and simplified data entry procedures. Based on Center for Disease Control (CDC)’s classification of areas [1] of early childhood development (classes), several activities (instances) and relations to milestones will be developed to form a small scale ontology. Based on the information from these features, the ontology will include information on the child’s development or areas of concern all with a simple entry of daily activity by the teacher. 
 2.	Project Goals and Objectives 
 The overall project goal is to develop an extremely flexible application to record a child’s daily activity which will assess the child’s developmental pattern. The application will be user friendly with ease of data entry with a simple touch of the screen. 
@@ -12,15 +12,15 @@ The specific objectives and features are summarized below:
 •	Will be based on simple small scale ontology.
 •	The daily activity report will include a set of 8 activities, 3 sections identifying the child’s lunch intake, nap duration, and remarks on which activity the child has enjoyed the most, and reminders to parents such as parent-teacher meetings, tomorrow weather, special occasions at the school etc.
  
-The significance of this application lies in what occurs after a teacher selects/deselects a checkbox following the child’s participation or what activity the child repeatedly likes to go back to doing. Based on these trends, the application will have the artificial intelligence to assess the child’s development for his age group and how the child fares amongst his/her peers. The peer performance data will be extracted from federated databases where published data is readily available for Johnson County, Kansas [2]. For developmental areas where no data is available in the county or state level, a national database will be looked up if available. This adds a lot of value to the parent compared to what is required of the teacher; a mere click/unclick of a checkbox. 
+The significance of this application lies in what occurs after a teacher selects/deselects a checkbox following the child’s participation or what activity the child repeatedly likes to go back to doing. Based on these trends, the application will have the artificial intelligence to assess the child’s development for his age group and how the child fares amongst his/her peers. The peer performance data will be extracted from federated databases where published data is readily available for Johnson County, Kansas. For developmental areas where no data is available in the county or state level, a national database will be looked up if available. This adds a lot of value to the parent compared to what is required of the teacher; a mere click/unclick of a checkbox. 
 3.	Project Background and Related Work 
-The Public Broadcasting Service (PBS) explains: children thrive in a well-ordered and predictable environment, where daily routines such as arrivals and departures, mealtimes, nap times and toileting are dealt with consistently by all caregivers. In order to establish daily routines, most preschool classrooms follow a basic daily schedule [3]. 
+The Public Broadcasting Service (PBS) explains: children thrive in a well-ordered and predictable environment, where daily routines such as arrivals and departures, mealtimes, nap times and toileting are dealt with consistently by all caregivers. In order to establish daily routines, most preschool classrooms follow a basic daily schedule [2]. 
 
 Often times, these daily schedules and participation are documented on a sheet of paper which is provided to the parent at the end of each day. By the end of the month or year, the insurmountable amount of paper means very little to the parent on how the child’s development has progressed over the months or as a matter of fact over the years. This data is invaluable, and can provide a clear indication of which specific areas the children are showing preference over the others so the parents can effectively invest their time and money in harnessing their child’s energy. In some cases, this data can also provide enough information on if the child is ready to progress to his school years or if he is having a social or medical constraint that might suggest delaying this major step. 
 
 Imagine an application that would take this otherwise simple data (click/unclick) and turn it into machine readable information that could interpret the child’s interests and developments and provide it to parents at the end of the month or year. This is the background and motivation to develop this application. 
 
-The application was also loosely developed based on how the oil industry reduces the millions of lines of data recorded during drilling to interpret any performance or quality related issues in an intelligently auto-generated daily report. Reference [4] provides some insight on already performed work in this area where the XML input uses the semantic processing services (SPARQL, RDF Database, indexing etc.) to generate a pdf of the daily report. 
+The application was also loosely developed based on how the oil industry reduces the millions of lines of data recorded during drilling to interpret any performance or quality related issues in an intelligently auto-generated daily report. Reference [3] provides some insight on already performed work in this area where the XML input uses the semantic processing services (SPARQL, RDF Database, indexing etc.) to generate a pdf of the daily report. 
 
 The approach uses ontologies for everything, including the input, output generation and comparison with published data from federated websites. 
 
@@ -33,22 +33,14 @@ Some example features that will be generated using this application are listed b
 •	Easy to read yearly reports
 •	Parent teacher meeting reminders
 •	Fee reminders
-•	Tomorrow’s activity (letter sharing, dressing, story book etc)	•	Special occasion reminders (parent’s night out, Halloween etc)
+•	Tomorrow’s activity (letter sharing, dressing, story book etc.)	•	Special occasion reminders (parent’s night out, Halloween etc.)
 •	Email buttons
 •	Weather
 •	Holidays or school closing
 
 
 
-Bibliography
-
-1.	http://semanticweb.com/semantic-case-study-epim-reportinghub_b26590 retrieved February 22, 2013.
-2.	http://www.pbs.org/wholechild/providers/little.html retrieved February 22, 2013.
-
-
-
 4.	General Plan of Work 
-
 Architectural Diagram:
 
 
@@ -85,14 +77,23 @@ Architectural Diagram:
 
 
 
-Use case Specification:
 
+
+
+
+
+
+
+
+
+
+Use case Specification:
   USE CASE 1	Reporting System
 Goal in Context	Teacher mails the report to every parent through a mobile device, expects report received by the parent within seconds.
 Scope & Level	Schools, Primary Context
 Preconditions	Childs activities, age group, their names etc.
-Success End Condition	Buyer has goods, we have money for the goods.
-Failed End Condition	Teacher uses paper which is time consuming, Buyer has not spent the money.
+Success End Condition	Teacher’s ease of entry, parents will receive a comprehensive analysis
+Failed End Condition	Parents may not approve of the application’s analysis outcome
 Primary, 
 Secondary Actors	Teachers
 Parent, Administration
@@ -111,11 +112,11 @@ If the child is sick, it will be included in the report
 	4a	Depending upon activity, an image of activity is also attached with the report
 	7a	Special/ Seasonal Activities, Child’s Performance, Weekly themes, Dentist/Doctor Visits, Holidays, Special days will be included in the monthly reports
 	7b	Child’s growth, overall performance and regular holidays can be included in yearly reports.
-		
+
 
 RELATED INFORMATION	
-Priority	<how critical to your system / organization>
-Performance	<the amount of time this use case should take>
+Priority	Not applicable
+Performance	The ideal application will not take more than a check/uncheck operation by the teacher. The application will intelligently assess the child’s developmental milestones 
 Frequency	Daily, monthly and yearly 
 Channels to actors	Mobile, database etc.
 OPEN ISSUES	Coding, network
@@ -126,36 +127,31 @@ Information...	Administration Support is needed.
 Superordinates	Nil currently
 Subordinates	Nil currently
 
-
 Class Diagram for Use Case 1
-
 The below screen shot is for TeaParting System (Teacher to Parent Reporting System) that has reporting as Use case and Teacher as Primary Actor. For generating Use case, class and sequence diagram I have used UML Visual Paradigm software.
 
  
 
-IN the “Reporting” use case, sub class diagrams are included. The below screen shot shows different classes required for the reporting system and can be send to each and every parent.
+In the “Reporting” use case, sub class diagrams are included. The below screen shot shows different classes required for the reporting system that can be sent to the parents.
+
+ 
+
+The “Reports” class has multiple sub classes called “Daily”, “Monthly” and “Yearly”, shown in the screen shot below.
 
  
 
 
-The “Reports” class has multiple sub classes called “Daily”, “Monthly” and “Yearly”, shown in the below screen shot.
+
+
+
+
+
+The screen shot below is the Sequence Diagram based upon the class Diagram.
 
  
-
-
-
-
-
-
-
-The below screen shot is the Sequence Diagram basing upon the class Diagram.
-
- 
-
-
 
 Ontologies
-Below is the screen shot (Logic View) of OWL classes in a Report Ontology. Created 3 different classes “Activities, “Child” and “Teacher”. Activities class has multiple sub classes.
+Below is the screen shot (Logic View) of OWL classes in a Report Ontology. Three different classes “Activities, “Child” and “Teacher” were created. Activities class has multiple sub classes.
 
  
 
@@ -164,22 +160,17 @@ Further, this ontology will be improvised with parent class and Login class
 
 
 
-Below screen shot is of Visualization of the Ontology using Jambalaya tool
+
+Below is the screen shot for Visualization of the Ontology using Jambalaya tool
  
 
-
-
 Description of Web services
-
-I will be creating a weather/temperature web service using ASP.net. IN the daily activity report, I want to display next day’s weather/temperature, so that once the parent receives the report, the parent can make sure that his/her child dresses appropriately to school for the next day.
+A web service will be created for weather/temperature using ASP.net. In the daily activity report, the web service will display next day’s weather/temperature, so that once the parent receives the report, the parent can make sure that his/her child dresses appropriately to school for the next day.
 
 Expected outcomes and Project success criteria
-
-
-
+A successful outcome of the project will deliver an accurate daily activity report and a monthly report that will provide a detailed description of what the child has accomplished. A yearly report will provide a relative performance of the child with respect to his/her peers. A detailed progress report will be generated that will place the child in a percentile type basis compared to children of similar age in the County/State level.
 
 Design of mobile phone and Web based interfaces (GUI)
-
 The reporting system has a graphical interface, which will be built using HTML 5, CSS, JavaScript and Jquery. 
 
 
@@ -193,59 +184,57 @@ The reporting system has a graphical interface, which will be built using HTML 5
 
 
 
-Screen shots for GUI’s 
+Screen shot for GUI for mobile phone
+ 
 
-Simple and user-friendly GUI‘s are developed for the reporting system. And preference is given to less typing and a user does not require any training.
+Simple and user-friendly GUI‘s will be developed for the reporting system. Preference will be given to minimum typing and a user will not require any training.
 
-In- order to use the reporting system the user/teacher is supposed to have a login and password.
+In- order to use the reporting system the user/teacher will be required to have a login and password.
 
-
-
-
-
-
-Once the login is confirmed, the teacher can generate a report basing upon the requirement. Currently, my system generates only a daily report, which is shown in the below screen shot. Still monthly and yearly reports are need to be coded. 
+Once the login is confirmed, the teacher can generate a report based upon the requirement. Currently, the system generates only a daily report, which is shown in the screen shot below. The monthly and yearly reports will coded in later stages. 
  
 
 
 
-The screen shot below, shows the template of yearly report which is been taken from the website http://www.educationworld.com/school_calendar_template_13_14.shtml. But depending upon my application needs, I am going to modify it.
-
+The screen shot below, shows the template of yearly report which was taken from the website http://www.educationworld.com/school_calendar_template_13_14.shtml. This will be modified depending on the application needs as the coding is completed.
  
 
 
 
 
 
-The screen shot below shows a sample monthly report format, which is used from the Goddard School.  But, this format will be changed as per my application.
+The screen shot below shows a sample monthly report format, which is currently used by the Goddard School.  This format will be changed as per the requirement of the application.
  
-In order to use the application efficiently, some interface improvisations can be applied. 
+In order to use the application efficiently, some interface improvisations will be applied as the coding is developed. 
 •	User friendly error messages: If an error is raised, a simple and conventional message/solution might help the user to solve the error easily 
 •	Accidental Touching: 
 •	Selection list, Drop down lists and Radio buttons might help user to generate the report faster and efficiently 
 •	Prepopulate the data, so that user can type less and enhance the feature of auto completion.
 •	Usability testing, in/out Wi-Fi devices.
 
-
 Technological and Architectural requirements
-
 •	HTML5, CSS, JavaScript, Jquery, Protégé, SPARQL, Agilefant, Git, IIS Server, .Net framework 
 •	For Mobile :  Flash Plugin, Media format support
 
 
 
 Project Timelines, Members, Task Responsibility (e.g., wiggio, Agilefant)
-	I am responsible for my individual project. 
+The course project timelines will be adhered to. I am responsible for my individual project. 
 
 5.	Internet Access
-
-•	Project Website (URL) - http://170.224.162.64/Reporting/index.html# (Diagrams URL)
+•	Project Website (URL) - 
+http://170.224.162.64/Reporting/index.html# (Diagrams URL)
+http://170.224.162.64/Reporting/Preproposal.pdf (Report Document URL)
 •	Wiggio (URL) – optional (communication between members)
 •	Afilefant (URL) – Not applicable as it is an Individual project
-•	GitHub (URL) – post this report your project GitHub site.
-6.	Bibliography 
-1.	http://www.educationworld.com/school_calendar_template_13_14.shtml  retrieved on 2/22/2013.
+•	GitHub (URL) – 
 
+6.	Bibliography 
+
+1.	http://www.cdc.gov/NCBDDD/actearly/pdf/checklists/All_checklists.pdf retrieved February 22, 2013.
+2.	http://www.pbs.org/wholechild/providers/little.html retrieved February 22, 2013.
+3.	http://semanticweb.com/semantic-case-study-epim-reportinghub_b26590 retrieved February 22, 2013.
+4.	http://www.educationworld.com/school_calendar_template_13_14.shtml  retrieved on 2/22/2013.
 
 
 
