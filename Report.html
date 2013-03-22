@@ -1,0 +1,233 @@
+<!Doctype html>
+ 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Sortable Report</title>
+  <title> Datepicker </title>
+  
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+ 
+   <style>
+  .column { width: 425px; float: left; padding-bottom: 120px; }
+  .portlet { margin: 0 2em 2em 0; }
+  .portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.3em; }
+  .portlet-header .ui-icon { float: right; }
+  .portlet {height: 145px;}
+  .portlet-content { padding: 0.4em; }
+  .ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+  .ui-sortable-placeholder * { visibility: hidden; }
+  
+  </style>
+  
+ <style type="text/css">
+/* CSS goes here */
+#wxWrap {
+    width: 300px;
+  background: #EEE; /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(224,224,224,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(240,240,240,1)), color-stop(100%,rgba(224,224,224,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(224,224,224,1) 100%); /* Chrome10+,Safari5.1+ */
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e0e0e0',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, rgba(240,240,240,1) 0%,rgba(224,224,224,1) 100%); /* W3C */
+    padding: 2px 13px 2px 11px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+#wxIntro {
+    display: inline-block;
+    font: 14px/20px Arial,Verdana,sans-serif;
+    color: #666;
+    vertical-align: top;
+    padding-top: 9px;
+}
+#wxIcon {
+    display: inline-block;
+    width: 61px;
+    height: 34px;
+    margin: 2px 0 -1px 1px;
+    overflow: hidden;
+    background: url('http://l.yimg.com/a/lib/ywc/img/wicons.png') no-repeat 61px 0;
+}
+#wxIcon2 {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin: 1px 6px 0 8px;
+    overflow: hidden;
+}
+#wxTemp {
+    display: inline-block;
+    font: 20px/28px Arial,Verdana,sans-serif;
+    color: #333;
+    vertical-align: top;
+    padding-top: 5px;
+    margin-left: 0;
+}
+</style>
+
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+  <script>
+$(document).ready(function(){
+  $(":header").css("background-color","gray");
+});
+</script>
+  <script>
+  $(function() {
+    $( ".column" ).sortable({
+      connectWith: ".column"
+    });
+ 
+    $( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".portlet-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        .prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
+        .end()
+      .find( ".portlet-content" );
+ 
+    $( ".portlet-header .ui-icon" ).click(function() {
+      $( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
+      $( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+    });
+ 
+    $( ".column" ).disableSelection();
+  });
+  </script>
+</head>
+<body>
+<h2 align = "center">Preschool Daily Activity Report <div id="wxWrap" style = "text-align:center">
+    <span id="wxIntro" >
+        Currently in Overland Park:
+    </span>
+    <span id="wxIcon2"></span>
+    <span id="wxTemp"></span>
+</div>
+ </h2>
+
+<script type="text/javascript">
+// javascript will go here
+$(function(){
+
+    // Specify the ZIP/location code and units (f or c)
+    var loc = '66209'; // or e.g. SPXX0050
+    var u = 'f';
+
+    var query = "SELECT item.condition FROM weather.forecast WHERE location='" + loc + "' AND u='" + u + "'";
+    var cacheBuster = Math.floor((new Date().getTime()) / 1200 / 1000);
+    var url = 'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent(query) + '&format=json&_nocache=' + cacheBuster;
+
+    window['wxCallback'] = function(data) {
+	        var info = data.query.results.channel.item.condition;
+        $('#wxIcon').css({
+            backgroundPosition: '-' + (61 * info.code) + 'px 0'
+        }).attr({
+            title: info.text
+        });
+        $('#wxIcon2').append('<img src="http://l.yimg.com/a/i/us/we/52/' + info.code + '.gif" width="34" height="34" title="' + info.text + '" />');
+        $('#wxTemp').html(info.temp + '&deg;' + (u.toUpperCase()));
+		
+    };
+
+    $.ajax({
+        url: url,
+        dataType: 'jsonp',
+        cache: true,
+        jsonpCallback: 'wxCallback'
+    });
+    
+});
+</script>
+<label style = "font-size:12px;text-align:center">Date<input type="text" id="datepicker" /></label>
+<p style ="font-size:12px;text-align:right">Child's Name:<input type = "text"/></p>
+
+
+
+ 
+<div class="column">
+ 
+  <div class="portlet">
+    <div class="portlet-header" >Language Arts</div>
+    <div class="portlet-content">We developed our understanding of the sound that Tt makes when we played "Twinkle Toes"</div>
+	<div id="deleteFacetsDialog">
+<label style="color:blue;font-size:14px;Float:right"><input type="checkbox" id="participated"/>Participated</label>
+
+</div>
+  </div>
+  
+ 
+  <div class="portlet">
+    <div class="portlet-header">Cognitivee Skills/Math</div>
+    <div class="portlet-content">We developed our graphing skills when we filled in a bar graph to show how many cans of soup</div>
+	<div id="deleteFacetsDialog">
+<label style="color:blue;font-size:14px;Float:right"><input type="checkbox" id="participated"/>Participated</label>
+
+</div>
+  </div>
+  <div class="portlet">
+    <div class="portlet-header">Music/Movement</div>
+    <div class="portlet-content">We hummed along to a familiar tune when we learned to sing "My Doctor helps me"</div>
+	<div id="deleteFacetsDialog">
+<label style="color:blue;font-size:14px;Float:right"><input type="checkbox" id="participated"/>Participated</label>
+
+</div>
+  </div>
+ 
+</div>
+ 
+<div class="column">
+ 
+  <div class="portlet">
+    <div class="portlet-header">Motor Skills</div>
+    <div class="portlet-content">We developed our mature finger grasp when we traced over theme related pre-write sheets</div>
+	<div id="deleteFacetsDialog">
+<label style="color:blue;text-align:right;font-size:14px;Float:right"><input type="checkbox" id="participated"/>Participated</label>
+
+</div>
+  </div>
+ 
+</div>
+
+
+
+ 
+<div class="column">
+ 
+  <div class="portlet">
+    <div class="portlet-header">Social Science</div>
+    <div class="portlet-content">We enjoyed and interacted with one another when we played a shadow match game</div>
+	<div id="deleteFacetsDialog">
+<label style="color:blue;text-align:right;font-size:14px;Float:right"><input type="checkbox" id="participated"/>Participated</label>
+
+</div>
+  </div>
+ 
+  <div class="portlet">
+    <div class="portlet-header">Computer lab</div>
+    <div class="portlet-content">We followed the directions given by the device when we deisgned an avatar at Starfall.com</div>
+	<div id="deleteFacetsDialog">
+<label style="color:blue;font-size:14px;Float:right"><input type="checkbox" id="participated" />Participated</label>
+
+</div>
+  </div>
+  
+  <div class="portlet">
+    <div class="portlet-header">Creative Art</div>
+    <div class="portlet-content">We developed our applying skills when we created an image outside using sidewalk chalk </div>
+	<div id="deleteFacetsDialog">
+<label style="color:blue;text-align:right;font-size:14px; Float:right"><input type="checkbox" id="participated"/>Participated</label>
+
+</div>
+  </div>
+ 
+</div>
+ 
+</body>
+</html>
