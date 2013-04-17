@@ -1,0 +1,330 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+	<title>Monthly Report</title> 
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
+	<link rel="stylesheet" href="css/colors.css">
+  <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
+  
+	<script>	 
+	 // Global declarations - assignments made in $(document).ready() below
+    var hdrMainvar = null;
+    var contentMainVar = null;
+    var ftrMainVar = null;
+    var contentTransitionVar = null;
+    var stateLabelVar = null;
+    var whatLabelVar = null;
+    var stateVar = null;
+    var whatVar = null;
+    var form1var = null;
+    var confirmationVar = null;
+    var contentDialogVar = null;
+    var hdrConfirmationVar = null; 
+    var contentConfirmationVar = null;
+    var ftrConfirmationVar = null;
+    var inputMapVar = null;
+    
+    // Constants
+    var MISSING = "missing";
+    var EMPTY = "";
+    var NO_STATE = "ZZ";
+	</script>
+
+</head> 
+<body> 
+
+<!-- Page starts here -->
+<div data-role="page" data-theme="b" id="page1">
+
+	<div data-role="header" id="hdrMain" name="hdrMain" data-nobackbtn="true">
+		<h1>Monthly Report</h1>
+	</div>
+
+	<div data-role="content" id="contentMain" name="contentMain">	
+	
+	<form id="form1">
+	
+	
+	<div id="fnameDiv" data-role="fieldcontain">
+		<label for="fname" id="fnameLabel" name="fnameLabel">Child Name</label>		
+		<input id="fname" name="fname_r" type="text" />
+	</div>
+	
+ 
+  	
+	<div id="Teacher" data-role="fieldcontain">
+		<label for="phone">Teacher Making Assesment</label>		
+		<input id="phone" name="phone" type="text"/>
+	</div>
+	
+	
+<div id="Writes" data-role="fieldcontain">
+  		<label id="fr" for="fna">CAn recognize first name correctly</label>		
+      <select id="fna" name="sfs" tabindex="2">
+                  <option value="ZZ">Please select </option>
+    							<option value="AL">Yes</option>
+    							<option value="AK">No</option>
+    							
+								</select>
+    </div>
+
+<div id="recog" data-role="fieldcontain">
+  		<label id="re" for="rec">Can recognize last name correctly</label>		
+      <select id="rec" name="sta" tabindex="2">
+                  <option value="ZZ">Please select </option>
+    							<option value="AL">Yes</option>
+    							<option value="AK">No</option>
+    							
+								</select>
+    </div>
+
+<div id="Spell" data-role="fieldcontain">
+  		<label id="fn" for="spl">Can spell first name correctly</label>		
+      <select id="spl" name="s" tabindex="2">
+                  <option value="ZZ">Please select </option>
+    							<option value="AL">Yes</option>
+    							<option value="AK">No</option>
+    							
+								</select>
+    </div>
+
+  	<div id="Count" data-role="fieldcontain">
+  		<label for="ctn">Can count numbers by memory independantly</label>		
+  		<input id="ctn" name="street_r" type="text" />
+  	</div>
+	<div id="item" data-role="fieldcontain">
+  		<label id="it" for="tem">CAn order item by size</label>		
+      <select id="tem" name="item2" tabindex="2">
+                  <option value="ZZ">Please select </option>
+    							<option value="AL">Yes</option>
+    							<option value="AK">No</option>
+    							
+								</select>
+    </div>
+<div id="Colors" data-role="fieldcontain">		
+	<label for="clr">Can recognize colors an names correctly</label>		
+		<input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
+		<label for="checkbox-1">Black</label>
+		<input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
+		<label for="checkbox-2">White</label>
+		<input type="checkbox" name="checkbox-3" id="checkbox-3" class="custom" />
+		<label for="checkbox-3">Red</label>
+		<input type="checkbox" name="checkbox-4" id="checkbox-4" class="custom" />
+		<label for="checkbox-4">Blue</label>
+		<input type="checkbox" name="checkbox-5" id="checkbox-5" class="custom" />
+		<label for="checkbox-5">Green</label>
+		<input type="checkbox" name="checkbox-6" id="checkbox-6" class="custom" />
+		<label for="checkbox-6">Yellow</label>
+		<input type="checkbox" name="checkbox-1" id="checkbox-7" class="custom" />
+		<label for="checkbox-7">Orange</label>
+</div>
+<div id="Writes" data-role="fieldcontain">
+  		<label id="wru" for="hand">Writes with</label>		
+      <select id="hand" name="state_r" tabindex="2">
+                  <option value="ZZ">Please select </option>
+    							<option value="AL">Left hand</option>
+    							<option value="AK">Right Hand</option>
+    							
+								</select>
+    </div>
+
+<div id="Jmp" data-role="fieldcontain">
+  		<label id="jump" for="feet">CAn Jump with 2 feet</label>		
+      <select id="feet" name="state_r" tabindex="2">
+                  <option value="ZZ">Please select </option>
+    							<option value="AL">Yes</option>
+    							<option value="AK">No</option>
+    							
+								</select>
+    </div>
+    
+<div id="Hop" data-role="fieldcontain">
+  		<label id="Hopi" for="foot">Can hop with one foot</label>		
+      <select id="foot" name="state_r" tabindex="2">
+                  <option value="ZZ">Please select </option>
+    							<option value="AL">Yes</option>
+    							<option value="AK">No</option>
+    							
+								</select>
+    </div>
+<div id="Grip" data-role="fieldcontain">
+  		<label for="Penc">Pencil Grip Description</label>		
+  		<input id="PG" name="city_r" type="text" />
+  	</div>
+	
+<div id="Skil" data-role="fieldcontain">
+  		<label for="Sci">Scissor Skills Description</label>		
+  		<input id="SS" name="city_" type="text" />
+  	</div>   
+       
+<div id="whatDiv" data-role="fieldcontain">
+    	<label id="whatLabel" for="what">Concerns</label>
+    	<textarea cols="40" rows="8" id="what" name="what_r"></textarea>
+    </div>
+	
+	<div id="Dis" data-role="fieldcontain">
+    	<label id="D" for="what">Discussions</label>
+    	<textarea cols="40" rows="8" id="wha" name="what_"></textarea>
+    </div>
+  
+  
+  	<div id="submitDiv" data-role="fieldcontain">    
+  	 <input type="submit" value="Submit Report" data-inline="true"/>
+    </div>
+    </form>
+	</div><!-- contentMain -->
+  
+	<div data-role="footer" id="ftrMain" name="ftrMain"></div>
+	
+  <div align="CENTER" data-role="content" id="contentDialog" name="contentDialog">	
+	 <div>Please fill in all required fields before submitting the form.</div>
+	 <a id="buttonOK" name="buttonOK" href="#page1" data-role="button" data-inline="true">OK</a>
+	</div>	<!-- contentDialog -->
+	
+  <!-- contentTransition is displayed after the form is submitted until a response is received back. -->
+	<div data-role="content" id="contentTransition" name="contentTransition">	
+	 <div align="CENTER"><h4>Your report has been sent. Please wait.</h4></div>
+	 <div align="CENTER"><img id="spin" name="spin" src="img/wait.gif"/></div>
+	</div>	<!-- contentTransition -->
+	
+	<!-- Although stored within page1 div tag, hdrConfirmation, contentConfirmation and ftrConfirmation represent a self contained 'confirmation page' -->
+	<div data-role="header"  id="hdrConfirmation" name="hdrConfirmation" data-nobackbtn="true">
+		<h1></h1>
+	</div>
+	
+	<div data-role="content" id="contentConfirmation" name="contentConfirmation" align="center">	
+  	<p></p> 
+    <p> <span id="confirmation" name="confirmation"></span>  </p>
+	</div><!-- contentConfirmation -->	
+  	
+	<div data-role="footer" id="ftrConfirmation" name="ftrConfirmation"></div> 
+	
+	
+	<script>
+	 
+    $(document).ready(function() {
+    // Assign global variables
+      hdrMainVar = $('#hdrMain');
+      contentMainVar = $('#contentMain');
+      ftrMainVar = $('#ftrMain');
+      contentTransitionVar = $('#contentTransition');
+      stateLabelVar = $('#stateLabel');
+      whatLabelVar = $('#whatLabel');
+      stateVar = $('#state');
+      whatVar = $('#what');
+      form1Var = $('#form1');
+      confirmationVar = $('#confirmation');
+      contentDialogVar = $('#contentDialog');
+      hdrConfirmationVar = $('#hdrConfirmation');
+      contentConfirmationVar = $('#contentConfirmation');
+      ftrConfirmationVar = $('#ftrConfirmation'); 
+      inputMapVar = $('input[name*="_r"]');
+      
+      hideContentDialog();
+      hideContentTransition();
+      hideConfirmation();
+    }); 
+	
+	  $('#buttonOK').click(function() {
+      hideContentDialog();
+      showMain();
+      return false;      
+    });
+   
+    
+    $('#form1').submit(function() {
+        var err = false;
+        // Hide the Main content
+        hideMain();
+        
+        // Reset the previously highlighted form elements
+        stateLabelVar.removeClass(MISSING); 
+        whatLabelVar.removeClass(MISSING);              
+        inputMapVar.each(function(index){              
+          $(this).prev().removeClass(MISSING); 
+        });
+        
+        // Perform form validation
+        inputMapVar.each(function(index){  
+        if($(this).val()==null || $(this).val()==EMPTY){  
+            $(this).prev().addClass(MISSING);            
+            err = true;
+          }          
+        });   
+        if(stateVar.val()==NO_STATE){           
+          stateLabelVar.addClass(MISSING);                     
+          err = true;
+        }            
+        if(whatVar.val()==null||whatVar.val()==EMPTY){   
+          whatLabelVar.addClass(MISSING);   
+          err = true;
+        }
+        
+        // If validation fails, show Dialog content
+        if(err == true){            
+          showContentDialog();
+          return false;
+        }        
+        
+        // If validation passes, show Transition content
+        showContentTransition();
+        
+        // Submit the form
+        $.post("/forms/requestProcessor.php", form1Var.serialize(), function(data){
+          confirmationVar.text(data);
+          hideContentTransition();
+          showConfirmation();
+        });        
+        return false;      
+    });    
+    
+  function hideMain(){
+    hdrMainVar.hide();
+    contentMainVar.hide();
+    ftrMainVar.hide();   
+   }
+   
+  function showMain(){
+    hdrMainVar.show();
+    contentMainVar.show();
+    ftrMainVar.show();
+   }
+   
+   function hideContentTransition(){
+    contentTransitionVar.hide();
+   }      
+   
+   function showContentTransition(){
+    contentTransitionVar.show();
+   }  
+   
+  function hideContentDialog(){
+    contentDialogVar.hide();
+   }   
+   
+   function showContentDialog(){
+    contentDialogVar.show();
+   }
+   
+   function hideConfirmation(){
+    hdrConfirmationVar.hide();
+    contentConfirmationVar.hide();
+    ftrConfirmationVar.hide();
+   }  
+   
+   function showConfirmation(){
+    hdrConfirmationVar.show();
+    contentConfirmationVar.show();
+    ftrConfirmationVar.show();
+   } 
+
+    
+  </script>
+</div> <!-- page1 -->
+
+
+<!-- Page ends here -->
+</body>
+</html>
