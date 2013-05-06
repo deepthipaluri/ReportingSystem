@@ -1,0 +1,33 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0-beta.1/jquery.mobile-1.3.0-beta.1.min.css" /> 
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.3.0-beta.1/jquery.mobile-1.3.0-beta.1.min.js"></script>
+ <link rel="stylesheet" href="/resources/demos/style.css" />
+ 
+</head>
+<body>
+
+<form name="login"; align = "center" >
+
+Username<input type="text" name="userid"/> <br/><br/>
+Password<input type="password" name="pswrd"/> <br/><br/>
+<input type="button" onclick="check(this.form)" value="Login" /> 
+<input type="reset" value="Cancel"/>
+</form>
+<script language="javascript">
+function check(form)/*function to check userid & password*/
+{
+/*the following code checkes whether the entered userid and password are matching*/
+if(form.userid.value == "deepthi" && form.pswrd.value == "admin")
+{
+window.open('Teacherpage.html')/*opens the target page while Id & password matches*/
+}
+else
+{
+alert("Error Password or Username")/*displays error message*/
+}
+}
+</script>
+</body>
+</html>
