@@ -1,0 +1,222 @@
+CS560 Knowledge Discovery and Management
+Third Increment Report 
+Deepthi Paluri
+Modeling and validation of domain ontology and inference cases
+
+The ontology is been updated with Monthly Report Class. This class contains academic, emotional and social behavior sub classes. The teacher will be sending the Monthly report of a child by assessing three different skills on monthly basis. 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+The properties that can be included in the monthly report are: Has Emotions ( Happy and sad), has Social behavior ( Shares, friendly to other kids) and Knows to read and write.
+
+
+ 
+
+The below screen shot shows that a child_1 
+•  can read his letters and numbers
+•  Is Happy or Sad
+•  Is friendly and self- controlled 
+•  Shares toys etc.
+ 
+
+
+Validation of Domain Ontology by Pellet
+
+Ontological Inference Cases:
+
+Classes  Instances
+  Object Properties
+Child  Child_1
+  Learns
+Activities  Acti_1	isTaughtBy
+Teacher  Teacher_1	Teaches
+Sends
+
+Parent
+Mother
+Father  Parent_1
+Parent_2  HasChild
+HasEmail_ID
+HasPhoneNumber
+
+Child
+Boy
+Girl  Child_1
+Child_2  HasName
+HasAge
+HasMother
+HasFather
+HasSibling
+MonthlyReport
+Acdemic
+Emotional
+Social Behaviour  Letters
+Numbers
+Happy
+Sad
+Toys  Reads
+Writes
+HasEmotions
+IsFriendly
+Shares
+YearlyReport  ChildPerformance_1
+Holidays  IssentBy
+
+
+
+
+  	
+
+Inference Cases
+A child can read and write, letters and numbers: He should be able to recognize them.
+A child might share his toys and friendly for instance which would assess his behavioral skills.
+A child might be self-controlled which can also be used by teacher in order to assess his behavioral skills.
+
+
+
+SWRL Rules and Inference Cases
+ 
+
+
+Inference Cases
+if a child is good at social skills then it can be said that he has emotions
+the teacher has email ID and can send Monthly Report, which means that all the three skills of a child will be sent to parent
+A Child knows his academics, that means he can write and read
+ 
+A yearly report includes overall performance and ranking in the class of a child.
+SPARQL queries and query results
+Select ?Parent ?Name
+where
+{?Parent: HasName ?name
+}
+ 
+
+ 
+Weka : Created a .CSV/Excel file for a monthly assessment of a child. 
+ 
+The overall rating of the child taken for 2 months with 20 days. If a child participates in an activity then he will be receiving 1 score. So, if he participates in an activity for 20 days in a month, then he would be receiving 2.  I assumed that there a threshold value of 15 on an average. So, if his average score is greater than 15 then he is proficient otherwise he is not.  
+This data is fed to WEKA.
+ 
+Classifier Output:
+ 
+
+Provided training dataset and calculated the output. 
+ 
+
+Diagrams
+Used Visual Paradigm for generating Class diagram and Sequence Diagram 
+
+ 
+Sequence diagram (using Visual Paradigm)
+
+An overall sequence diagram of Teacher to Parent Reporting System
+
+ 
+
+
+
+
+
+
+
+
+Class Diagram using Visual Paradigm:
+
+ 
+
+Below screen shot shows the subclasses of class “Reports” in the above diagram
+ 
+
+
+
+
+
+
+
+
+WSDLs (Web Service Description Language)
+Nisarga and I would be sharing the web service. At this point, I am waiting for an update on web service from Nisarga. The below screen shot is my WSDL of the web service ( the query that doesn’t return anything)
+
+ 
+
+Modeling of ontologies, rules, queries
+Output of Ontology retrieval
+ 
+
+ 
+
+
+Implementation of user interface (Mobile Apps)
+
+The below screen shot is for the Teachers page. As of now, the 5 below mentioned does not have links.
+Teacher: A teacher can update her profile/properties. Login /Sign In to generate reports.
+Home: A teacher can go back to the school web site, services and contact.
+Explore: A teacher can post answers to the queries sent by parents/other teachers. Can share information between different franchises.
+Photos: Teacher can maintain a gallery and post/print photos.
+Love: Teacher can connect to social networking sites / can provide services and comments 
+
+
+ 
+
+
+
+
+
+
+The monthly report is shown in below screen shot.
+Before generating this rport, the teacher assess the child with some questions. Then, she would be entering the information. This report consists of Child’s name, teacher name, whether he can recognize his first name, last name, numbers,alphabets, etc. The teacher would observe his skills and enters them in this below form.
+
+ 
+
+
+
+The report screen shot is continued…….
+ 
+ 
+
+ 
+
+The report is submitted to concerned parent ‘s email ID. 
+If the fields are not filled, then the report can’t be submitted. Then the fields that are left unfilled will be marked in red.
+Deployment:
+Post your ontologies and services to your project cloud site and include the URLs to the report
+http://170.225.100.196/ReportUp.owl
+http://170.225.100.196/JENASPQWEB
+Post your mobile app website and include the URL to the report
+http://170.225.100.196/SChoolMain.html
+http://170.225.100.196/index.html
+Post your implementation and reports to your GitHub site and include the URL to the report
+https://github.com/deepthipaluri/ReportingSystem/blob/master/SChoolMain.html
+https://github.com/deepthipaluri/ReportingSystem/blob/master/Jquery.easing.js
+https://github.com/deepthipaluri/ReportingSystem/blob/master/MonthlyReport.html  
+https://github.com/deepthipaluri/ReportingSystem/blob/master/WebService.java
+  https://github.com/deepthipaluri/ReportingSystem/blob/master/NewMain.java
+  https://github.com/deepthipaluri/ReportingSystem/blob/master/ClassHierarchy.java
+
+Implementation status report 
+
+Work completed
+Description: Monthly Report Activity implementation is almost completed 
+Responsibility: Each and every phase is done by Deepthi
+Time taken: More than 5 days
+Contributions: Single/Individual
+
+Work to be completed
+Description:  Implementing Jquery Mobile for yearly report needed to be completed. My web service is still displaying errors. So, I will be utilizing web service from Nisarga
+Responsibility: Every task will be done by Deepthi.
+Time to be taken: Approximately 1 week.
+
+
