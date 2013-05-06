@@ -1,0 +1,255 @@
+CS560 Knowledge Discovery and Management
+Second Increment Report 
+Author: Deepthi Paluri
+Modeling and validation of domain ontology and inference cases
+
+The model has been modified a bit. The Parent Class has 2 subclasses, “Mother” and “Father”. The Child Class has “Boy” and “Girl” as other two subclasses. Monthly Report Class contains “Meeting Reminder”, ”Holidays/School Closing”, ”ParentsNightOutReminder” and “Fee Reminder”.
+Daily Report includes several Activities. Yearly reports include overall performance of a child and holidays. The below screen shot shows my updated version of TeaParting System (Teacher to Parent Reporting System). 3 types of reports can be generated for each child by a teacher.  These are 
+Daily, Monthly and Yearly. 
+
+ 
+
+
+
+Properties: A “HasChild” and “HasParent” are inverse to each other.  The below screen shot shows the newly added properties 
+ 
+
+Validation of Domain Ontology by Pellet
+
+ 
+
+
+Ontological Inference Cases:
+
+Classes  Instances
+  Object Properties
+Child  Child_1
+  Learns
+Activities  Acti_1	isTaughtBy
+Teacher  Teacher_1	Teaches
+Sends
+
+Parent
+Mother
+Father  Parent_1
+Parent_2  HasChild
+HasEmail_ID
+HasPhoneNumber
+
+Child
+Boy
+Girl  Child_1
+Child_2  HasName
+HasAge
+HasMother
+HasFather
+HasSibling
+MonthlyReport  	
+YearlyReport  ChildPerformance_1
+Holidays  IssentBy
+
+
+i.  A Parent can have name, Email ID and Phone number.
+Hence the communication between teacher and parent happens through email ID.
+ii.  A Parent “HasChild”, can be a Boy or Girl or both of them 
+iii.  A child can be a boy or girl can have Name, Age, Mother and Father.
+iv.  Monthly Report includes Meeting Reminder”, ”Holidays/School Closing”, ”ParentsNightOutReminder” and “Fee Reminder” which will be sent by the Teacher to the Parent on Monthy basis.  Yearly Report will be updated in next increment report.
+
+
+
+
+
+
+
+
+
+
+
+
+
+SWRL Rules and Inference Cases
+ 
+
+
+
+ 
+
+
+Inference Cases:
+i.  A child has Father
+ii.   A child has Mother
+iii.  A child (Boy or Girl) can have a brother as sibling
+iv.  A child (Boy or Girl) can have a sister as sibling.
+v.  A parent can have an Email ID as a part of details class but should end with “.com”
+vi.  A parent can have a Phone number but should start with “+”
+
+SPARQL queries and query results
+
+Query using a Property “HasChild”
+
+ 
+Using the Keyword “OPTIONAL”:  I have provided value for Email_ID ( Susanatyahoo.com) and Name (Amy) for Teacher instance in my Ontology for testing purpose.
+ 
+
+ 
+
+ 
+
+
+Using LIMIT
+ 
+
+
+
+Using UNION & FILTER
+ 
+
+ 
+
+
+
+
+
+
+
+
+Diagrams
+Used Visual Paradigm for generating Class diagram and Sequence Diagram 
+
+ 
+
+
+Sequence diagram (using Visual Paradigm)
+
+
+ 
+
+
+
+
+
+
+
+
+Class Diagram using Visual Paradigm: Mother and Father Classes are generalized subclasses of Parent Class. There is an association between Parent Class and Child Class.
+ 
+
+Below screen shot shows the subclasses of class “Reports” in the above diagram.
+ 
+
+
+
+
+
+WSDLs (Web Service Description Language)
+
+ 
+
+
+Modeling of ontologies, rules, queries
+
+Retrieving all the classes and Instances.
+ 
+ 
+
+SPARQL query:
+
+String queryString = " PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> "
+          + " PREFIX xmlns:<http://www.owl-ontologies.com/OntologyTeaRepo.owl#>"
+   + " SELECT ?y " + " WHERE { " + "xmlns:"+ ClassName + " " + "xmlns:HasName ?y" +" }";
+
+
+
+
+
+
+
+
+
+
+
+
+
+Implementation of services 
+Implemented using SPARQL query. The SPARQL query that I used is mention below.
+String queryString = " PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> " + " PREFIX xmlns:<http://www.owl-ontologies.com/OntologyTeaRepo.owl#>"
+   + " SELECT ?Teacher " + " WHERE { " + "xmlns:"+ ClassName + " " + "xmlns:Teaches ?x" +" }"; 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Implementation of user interface (Mobile Apps)
+
+This login box will accept username or email ID and a password. This login box has user name and password to sign in. When the close “X” is hit, the login box closes and the background will become normal. A screen shot is provided below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+If user name enters a wrong password/username/email, an error in displayed.
+
+ 
+
+Once a right user name and password are given, a preschool daily activity report page is displayed (teacher to parent report). I have created actual format of my Daily Activity Reporting in the TeaParting System.
+This is Kids daily activity report that would help a parent to know about his day to day activities in the school. 
+It also shows whether the preschooler has participated in each and every activity. If he/she has participated, the teacher can check the “participated”. A screen shot is provided below
+ 
+
+Deployment:
+
+Post your ontologies and services to your project cloud site and include the URLs to the report
+HTTP://170.225.100.196/JENASPQWEB/
+Post your mobile app website and include the URL to the report
+http://170.225.100.196/TEAPART/Report.html
+http://170.225.100.196/TEAPART/JQLOG.html
+http://170.225.100.196/ReportUPdated/ReportUp.owl
+Post your implementation and reports to your GitHub site and include the URL to the report
+  https://github.com/deepthipaluri/ReportingSystem/blob/master/WebService.java
+  https://github.com/deepthipaluri/ReportingSystem/blob/master/NewMain.java
+  https://github.com/deepthipaluri/ReportingSystem/blob/master/ClassHierarchy.java
+https://github.com/deepthipaluri/ReportingSystem/blob/master/Report.html
+https://github.com/deepthipaluri/ReportingSystem/blob/master/JQLOG.html
+
+Implementation status report 
+
+Work completed
+Description: SWRL rules, new properties are included in the OWL file. Daliy Report Activity implementation is completed. 
+Responsibility: Each and every phase is done by Deepthi
+Time taken: More than 5 days
+Contributions: Single/Individual
+
+
+Work to be completed
+Description:  Implementing Jquery mobile for Monthly report and yearly report are left to be completed. My web service is still displaying errors. So it should be implemented properly. I will try to complete before 3rd Increment
+Responsibility: Every task will be done by Deepthi.
+Time to be taken: Approximately 1 week.
+
+
+
+
+
+
+
+
+
