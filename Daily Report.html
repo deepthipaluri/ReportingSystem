@@ -1,0 +1,935 @@
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="en" />
+
+  <title>Sortable Report</title>
+  <title> Datepicker </title>
+  
+ 
+<!-- Example page styling (not required) -->
+<link href="example.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="jquery.zweatherfeed.min.js" type="text/javascript"></script>
+  
+<script type="text/javascript">
+$(function () { 
+
+  $('#test').weatherfeed(['66209'], {
+  	forecast: true,
+  	unit: 'f'
+  });
+});
+
+</script>
+
+ <script>   
+   // Global declarations - assignments made in $(document).ready() below
+    var hdrMainvar = null;
+    var contentMainVar = null;
+    var ftrMainVar = null;
+    var contentTransitionVar = null;
+    var stateLabelVar = null;
+    var whatLabelVar = null;
+    var stateVar = null;
+    var whatVar = null;
+    var form1var = null;
+    var confirmationVar = null;
+    var contentDialogVar = null;
+    var hdrConfirmationVar = null; 
+    var contentConfirmationVar = null;
+    var ftrConfirmationVar = null;
+    var inputMapVar = null;
+    
+    // Constants
+    var MISSING = "missing";
+    var EMPTY = "";
+    var NO_STATE = "ZZ";
+  </script>
+
+
+ 
+ <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
+ <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+ 
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" /> 
+    
+  <style>
+  .column { width: 400px; float: left; padding-bottom: 120px; }
+  .portlet { margin: 0 1em 1em 0; }
+  .portlet-header { margin: 0.2em; padding-bottom: 2px; padding-left: 0.3em; }
+  .portlet-header .ui-icon { float: right; }
+  .portlet {height: 130px;}
+  .portlet-content { padding: 0.4em; }
+  .ui-sortable-placeholder { border: 0.8px dotted black; visibility: visible !important; height: 50px !important; }
+  .ui-sortable-placeholder * { visibility: hidden; }
+  
+  </style>
+  
+ <style type="text/css">
+/* CSS goes here */
+
+#test{
+    position:absolute;
+    top: 200; /*[wherever you want it]*/
+    right:10; /*[wherever you want it]*/
+  height:automatic;
+}
+#datepicker{
+position:absolute;
+top:10;
+left:40;
+width:190;}
+
+.StudList{
+position:absolute;
+center:5;
+width:12;}
+
+#wxWrap {
+    width: 300px;
+  background: #EEE; /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(224,224,224,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(240,240,240,1)), color-stop(100%,rgba(224,224,224,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(224,224,224,1) 100%); /* Chrome10+,Safari5.1+ */
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e0e0e0',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, rgba(240,240,240,1) 0%,rgba(224,224,224,1) 100%); /* W3C */
+    padding: 2px 13px 2px 11px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+#wxIntro {
+    display: inline-block;
+    font: 10px/15px Arial,Verdana,sans-serif;
+    color: #666;
+    vertical-align: top;
+    padding-top: 9px;
+}
+#wxIcon {
+    display: inline-block;
+    width: 61px;
+    height: 34px;
+    margin: 2px 0 -1px 1px;
+    overflow: hidden;
+    background: url('http://l.yimg.com/a/lib/ywc/img/wicons.png') no-repeat 61px 0;
+}
+#wxIcon2 {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin: 1px 6px 0 8px;
+    overflow: hidden;
+}
+#wxTemp {
+    display: inline-block;
+    font: 18px/25px Arial,Verdana,sans-serif;
+    color: #333;
+    vertical-align: top;
+    padding-top: 5px;
+    margin-left: 0;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+  $(":header").css("background-color","gray");
+});
+</script>
+
+  <script>
+  $(function() {
+    $( ".column" ).sortable({
+      connectWith: ".column"
+    });
+ 
+    $( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".portlet-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        .prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
+        .end()
+      .find( ".portlet-content" );
+ 
+    $( ".portlet-header .ui-icon" ).click(function() {
+      $( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
+      $( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+    });
+ 
+    $( ".column" ).disableSelection();
+  });
+  </script>
+  <script type="text/javascript">
+  $(function() {
+   $( "#datepicker" ).datepicker({dateFormat:"dd M yy"}).datepicker("setDate",new Date());
+  });
+  </script>
+  
+  
+</head>
+<body>
+  
+  <form id="form1" method="POST" action="test.php">
+
+<div data-role="page" data-theme="b" id="page1">
+
+  <div data-role="header" id="hdrMain" name="hdrMain" data-nobackbtn="true">
+  	<h1 align = "center">Preschool Daily Activity Report  </h1></div>
+<div data-role="content" id="contentMain" name="contentMain">  
+
+<div data-role="fieldcontain">Date <input type="text" id="datepicker"> 
+
+<div id="Child" >Child's Name <select name="StudList" id="StudList">
+  			<option value="SW" >Sheriff Woody </option>
+  			<option value="BL">Buzz Lightyear</option>
+  			<option value="JJ">Jessica Jane</option>
+  			<option value="TR">Tyrannosaurus rex</option>
+  			<option value="SD">Slinky Dog</option>
+  			<option value="RG">Rocky Gibraltar</option>
+  			<option value="TT">Toddle Tot</option>
+  			<option value="HP">Hockey Puck</option>
+  			<option value="SP">Stinky Pete</option>
+  		</select>
+  </div></div>
+<br/>
+
+
+
+<div id="test"></div>
+
+<div class="column" align = "left">
+ 
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left" >Language Arts</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We developed our understanding of the sound that Tt makes when we played "Twinkle Toes"</div>
+  <div id="deleteFacetsDialog">
+  
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated" /><br/>Participated</label>
+
+</div>
+  </div>
+  
+ 
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Cognitivee Skills/Math</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We developed our graphing skills when we filled in a bar graph to show how many cans of soup</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Music/Movement</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left"> We hummed along to a familiar tune when we learned to sing "My Doctor helps me"</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+  
+  
+
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Creative Art</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We developed our applying skills when we created an image outside using sidewalk chalk </div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;text-align:right;font-size:11px; Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+ 
+
+</div>
+  
+<div class="column" align = "right">
+ 
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Motor Skills</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We developed our mature finger grasp when we traced over theme related pre-write sheets</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;text-align:right;font-size:11px;Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Social Science</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We enjoyed and interacted with one another when we played a shadow match game</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;text-align:right;font-size:11px;Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+ 
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Computer lab</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We followed the directions given by the device when we deisgned an avatar at Starfall.com</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated" /><br/>Participated</label>
+
+</div>
+  </div>
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Nature/Science</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We explored new materials when we sorted soup cans by size and color</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated" /><br/>Participated</label>
+
+</div>
+  </div> 
+</div>
+
+<div data-role = "fieldcontain" align = "left">Lunch I ate <select name="StudList" id="StudList" >
+  			<option value="all" >All </option>
+  			<option value="most" >Most </option>
+  			<option value="some" >Some</option>
+  			<option value="none" >None</option></select>
+  			</div>
+  			
+  			
+
+<div data-role = "fieldcontain" align = "left">Nap Time<select name="StudList" id="StudList" >
+  			<option value="one" >1PM to 2PM </option>
+  			<option value="three">1PM to 3PM</option></select>
+  							</div>
+  			
+
+<div id="Dis" data-role="Dis" data-role = "fieldcontain" >
+      <label id="D" for="what">Today I enjoyed</label>
+      <textarea cols="30" rows="3" id="wha" name="what_"></textarea>
+    </div>
+  <div id="Com" data-role="fieldcontain" >
+      <label id="D" for="what">Suggestions/Comments</label>
+      <textarea cols="40" rows="8" id="wha" name="what_"></textarea>
+    </div>
+  
+    <div id="mail" data-role="fieldcontain">
+      <label id="ed" for="what3">Email ID</label>
+      <input type = "text" name = "email"/>
+    </div>
+  	
+    <div id="submitDiv" data-role="fieldcontain" align = "center">    
+     <input type="submit" value="Send to Parent" data-inline="true" />
+    </div>
+    </form>
+  </div><!-- contentMain -->
+  
+  <div data-role="footer" id="ftrMain" name="ftrMain"></div>
+  
+  
+  <div align="CENTER" data-role="content" id="contentDialog" name="contentDialog">  
+   <div>Please fill in all required fields before submitting the form.</div>
+   <a id="buttonOK" name="buttonOK" href="#page1" data-role="button" data-inline="true">OK</a>
+  </div>	<!-- contentDialog -->
+  
+  <!-- contentTransition is displayed after the form is submitted until a response is received back. -->
+  <div data-role="content" id="contentTransition" name="contentTransition">	
+   <div align="CENTER"><h4>Your report has been sent. Please wait.</h4></div>
+   <div align="CENTER"><img id="spin" name="spin" src="img/wait.gif"/></div>
+  </div>	<!-- contentTransition -->
+  
+  <!-- Although stored within page1 div tag, hdrConfirmation, contentConfirmation and ftrConfirmation represent a self contained 'confirmation page' -->
+  <div data-role="header"  id="hdrConfirmation" name="hdrConfirmation" data-nobackbtn="true">
+  	<h1>Report Created</h1>
+  </div>
+  
+  		
+  <script>
+   
+    $(document).ready(function() {
+    // Assign global variables
+      hdrMainVar = $('#hdrMain');
+      contentMainVar = $('#contentMain');
+      ftrMainVar = $('#ftrMain');
+      contentTransitionVar = $('#contentTransition');
+      stateLabelVar = $('#stateLabel');
+      whatLabelVar = $('#whatLabel');
+      stateVar = $('#state');
+      whatVar = $('#what');
+      form1Var = $('#form1');
+      confirmationVar = $('#confirmation');
+      contentDialogVar = $('#contentDialog');
+      hdrConfirmationVar = $('#hdrConfirmation');
+      contentConfirmationVar = $('#contentConfirmation');
+      ftrConfirmationVar = $('#ftrConfirmation'); 
+      inputMapVar = $('input[name*="_r"]');
+      
+      hideContentDialog();
+      hideContentTransition();
+      hideConfirmation();
+    }); 
+  
+    $('#buttonOK').click(function() {
+      hideContentDialog();
+      showMain();
+      return false;      
+    });
+   
+    
+    $('#form1').submit(function() {
+        var err = false;
+        // Hide the Main content
+        hideMain();
+        
+        // Reset the previously highlighted form elements
+        stateLabelVar.removeClass(MISSING); 
+        whatLabelVar.removeClass(MISSING);              
+        inputMapVar.each(function(index){              
+          $(this).prev().removeClass(MISSING); 
+        });
+        
+        // Perform form validation
+        inputMapVar.each(function(index){  
+        if($(this).val()==null || $(this).val()==EMPTY){  
+            $(this).prev().addClass(MISSING);            
+            err = true;
+          }          
+        });   
+        if(stateVar.val()==NO_STATE){           
+          stateLabelVar.addClass(MISSING);                     
+          err = true;
+        }            
+        if(whatVar.val()==null||whatVar.val()==EMPTY){   
+          whatLabelVar.addClass(MISSING);   
+          err = true;
+        }
+        
+        // If validation fails, show Dialog content
+        if(err == true){            
+          showContentDialog();
+          return false;
+        }        
+        
+        // If validation passes, show Transition content
+        showContentTransition();
+        
+        // Submit the form
+        $.post("/forms/requestProcessor.php", form1Var.serialize(), function(data){
+          confirmationVar.text(data);
+          hideContentTransition();
+          showConfirmation();
+        });        
+        return false;      
+    });    
+    
+  function hideMain(){
+    hdrMainVar.hide();
+    contentMainVar.hide();
+    ftrMainVar.hide();   
+   }
+   
+  function showMain(){
+    hdrMainVar.show();
+    contentMainVar.show();
+    ftrMainVar.show();
+   }
+   
+   function hideContentTransition(){
+    contentTransitionVar.hide();
+   }      
+   
+   function showContentTransition(){
+    contentTransitionVar.show();
+   }  
+   
+  function hideContentDialog(){
+    contentDialogVar.hide();
+   }   
+   
+   function showContentDialog(){
+    contentDialogVar.show();
+   }
+   
+   function hideConfirmation(){
+    hdrConfirmationVar.hide();
+    contentConfirmationVar.hide();
+    ftrConfirmationVar.hide();
+   }  
+   
+   function showConfirmation(){
+    hdrConfirmationVar.show();
+    contentConfirmationVar.show();
+    ftrConfirmationVar.show();
+   } 
+
+    
+  </script>
+<!-- page1 -->
+
+
+<!-- Page ends here -->
+</body>
+</html>
+
+    
+  
+
+   
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-language" content="en" />
+
+  <title>Sortable Report</title>
+  <title> Datepicker </title>
+  
+ 
+<!-- Example page styling (not required) -->
+<link href="example.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="jquery.zweatherfeed.min.js" type="text/javascript"></script>
+  
+<script type="text/javascript">
+$(function () { 
+
+  $('#test').weatherfeed(['66209'], {
+  	forecast: true,
+  	unit: 'f'
+  });
+});
+
+</script>
+
+ <script>   
+   // Global declarations - assignments made in $(document).ready() below
+    var hdrMainvar = null;
+    var contentMainVar = null;
+    var ftrMainVar = null;
+    var contentTransitionVar = null;
+    var stateLabelVar = null;
+    var whatLabelVar = null;
+    var stateVar = null;
+    var whatVar = null;
+    var form1var = null;
+    var confirmationVar = null;
+    var contentDialogVar = null;
+    var hdrConfirmationVar = null; 
+    var contentConfirmationVar = null;
+    var ftrConfirmationVar = null;
+    var inputMapVar = null;
+    
+    // Constants
+    var MISSING = "missing";
+    var EMPTY = "";
+    var NO_STATE = "ZZ";
+  </script>
+
+
+ 
+ <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
+ <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+ 
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" /> 
+    
+  <style>
+  .column { width: 400px; float: left; padding-bottom: 120px; }
+  .portlet { margin: 0 1em 1em 0; }
+  .portlet-header { margin: 0.2em; padding-bottom: 2px; padding-left: 0.3em; }
+  .portlet-header .ui-icon { float: right; }
+  .portlet {height: 130px;}
+  .portlet-content { padding: 0.4em; }
+  .ui-sortable-placeholder { border: 0.8px dotted black; visibility: visible !important; height: 50px !important; }
+  .ui-sortable-placeholder * { visibility: hidden; }
+  
+  </style>
+  
+ <style type="text/css">
+/* CSS goes here */
+
+#test{
+    position:absolute;
+    top: 200; /*[wherever you want it]*/
+    right:10; /*[wherever you want it]*/
+  height:automatic;
+}
+#datepicker{
+position:absolute;
+top:10;
+left:40;
+width:190;}
+
+.StudList{
+position:absolute;
+center:5;
+width:12;}
+
+#wxWrap {
+    width: 300px;
+  background: #EEE; /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(240,240,240,1) 0%, rgba(224,224,224,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(240,240,240,1)), color-stop(100%,rgba(224,224,224,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(240,240,240,1) 0%,rgba(224,224,224,1) 100%); /* Chrome10+,Safari5.1+ */
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e0e0e0',GradientType=0 ); /* IE6-9 */
+    background: linear-gradient(top, rgba(240,240,240,1) 0%,rgba(224,224,224,1) 100%); /* W3C */
+    padding: 2px 13px 2px 11px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+#wxIntro {
+    display: inline-block;
+    font: 10px/15px Arial,Verdana,sans-serif;
+    color: #666;
+    vertical-align: top;
+    padding-top: 9px;
+}
+#wxIcon {
+    display: inline-block;
+    width: 61px;
+    height: 34px;
+    margin: 2px 0 -1px 1px;
+    overflow: hidden;
+    background: url('http://l.yimg.com/a/lib/ywc/img/wicons.png') no-repeat 61px 0;
+}
+#wxIcon2 {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin: 1px 6px 0 8px;
+    overflow: hidden;
+}
+#wxTemp {
+    display: inline-block;
+    font: 18px/25px Arial,Verdana,sans-serif;
+    color: #333;
+    vertical-align: top;
+    padding-top: 5px;
+    margin-left: 0;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+  $(":header").css("background-color","gray");
+});
+</script>
+
+  <script>
+  $(function() {
+    $( ".column" ).sortable({
+      connectWith: ".column"
+    });
+ 
+    $( ".portlet" ).addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+      .find( ".portlet-header" )
+        .addClass( "ui-widget-header ui-corner-all" )
+        .prepend( "<span class='ui-icon ui-icon-minusthick'></span>")
+        .end()
+      .find( ".portlet-content" );
+ 
+    $( ".portlet-header .ui-icon" ).click(function() {
+      $( this ).toggleClass( "ui-icon-minusthick" ).toggleClass( "ui-icon-plusthick" );
+      $( this ).parents( ".portlet:first" ).find( ".portlet-content" ).toggle();
+    });
+ 
+    $( ".column" ).disableSelection();
+  });
+  </script>
+  <script type="text/javascript">
+  $(function() {
+   $( "#datepicker" ).datepicker({dateFormat:"dd M yy"}).datepicker("setDate",new Date());
+  });
+  </script>
+  
+  
+</head>
+<body>
+  
+  <form id="form1" method="POST" action="test.php">
+
+<div data-role="page" data-theme="b" id="page1">
+
+  <div data-role="header" id="hdrMain" name="hdrMain" data-nobackbtn="true">
+  	<h1 align = "center">Preschool Daily Activity Report  </h1></div>
+<div data-role="content" id="contentMain" name="contentMain">  
+
+<div data-role="fieldcontain">Date <input type="text" id="datepicker"> 
+
+<div id="Child" >Child's Name <select name="StudList" id="StudList">
+  			<option value="SW" >Sheriff Woody </option>
+  			<option value="BL">Buzz Lightyear</option>
+  			<option value="JJ">Jessica Jane</option>
+  			<option value="TR">Tyrannosaurus rex</option>
+  			<option value="SD">Slinky Dog</option>
+  			<option value="RG">Rocky Gibraltar</option>
+  			<option value="TT">Toddle Tot</option>
+  			<option value="HP">Hockey Puck</option>
+  			<option value="SP">Stinky Pete</option>
+  		</select>
+  </div></div>
+<br/>
+
+
+
+<div id="test"></div>
+
+<div class="column" align = "left">
+ 
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left" >Language Arts</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We developed our understanding of the sound that Tt makes when we played "Twinkle Toes"</div>
+  <div id="deleteFacetsDialog">
+  
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated" /><br/>Participated</label>
+
+</div>
+  </div>
+  
+ 
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Cognitivee Skills/Math</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We developed our graphing skills when we filled in a bar graph to show how many cans of soup</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Music/Movement</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left"> We hummed along to a familiar tune when we learned to sing "My Doctor helps me"</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+  
+  
+
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Creative Art</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We developed our applying skills when we created an image outside using sidewalk chalk </div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;text-align:right;font-size:11px; Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+ 
+
+</div>
+  
+<div class="column" align = "right">
+ 
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Motor Skills</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We developed our mature finger grasp when we traced over theme related pre-write sheets</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;text-align:right;font-size:11px;Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Social Science</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We enjoyed and interacted with one another when we played a shadow match game</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;text-align:right;font-size:11px;Float:right"><input type="checkbox" id="participated"/><br/>Participated</label>
+
+</div>
+  </div>
+ 
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Computer lab</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We followed the directions given by the device when we deisgned an avatar at Starfall.com</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated" /><br/>Participated</label>
+
+</div>
+  </div>
+  <div class="portlet">
+    <div class="portlet-header" style = "font-size:16px;text-align:left">Nature/Science</div>
+    <div class="portlet-content" style = "font-size:14px;text-align:left">We explored new materials when we sorted soup cans by size and color</div>
+  <div id="deleteFacetsDialog">
+<label style="color:blue;font-size:11px;Float:right"><input type="checkbox" id="participated" /><br/>Participated</label>
+
+</div>
+  </div> 
+</div>
+
+<div data-role = "fieldcontain" align = "left">Lunch I ate <select name="StudList" id="StudList" >
+  			<option value="all" >All </option>
+  			<option value="most" >Most </option>
+  			<option value="some" >Some</option>
+  			<option value="none" >None</option></select>
+  			</div>
+  			
+  			
+
+<div data-role = "fieldcontain" align = "left">Nap Time<select name="StudList" id="StudList" >
+  			<option value="one" >1PM to 2PM </option>
+  			<option value="three">1PM to 3PM</option></select>
+  							</div>
+  			
+
+<div id="Dis" data-role="Dis" data-role = "fieldcontain" >
+      <label id="D" for="what">Today I enjoyed</label>
+      <textarea cols="30" rows="3" id="wha" name="what_"></textarea>
+    </div>
+  <div id="Com" data-role="fieldcontain" >
+      <label id="D" for="what">Suggestions/Comments</label>
+      <textarea cols="40" rows="8" id="wha" name="what_"></textarea>
+    </div>
+  
+    <div id="mail" data-role="fieldcontain">
+      <label id="ed" for="what3">Email ID</label>
+      <input type = "text" name = "email"/>
+    </div>
+  	
+    <div id="submitDiv" data-role="fieldcontain" align = "center">    
+     <input type="submit" value="Send to Parent" data-inline="true" />
+    </div>
+    </form>
+  </div><!-- contentMain -->
+  
+  <div data-role="footer" id="ftrMain" name="ftrMain"></div>
+  
+  
+  <div align="CENTER" data-role="content" id="contentDialog" name="contentDialog">  
+   <div>Please fill in all required fields before submitting the form.</div>
+   <a id="buttonOK" name="buttonOK" href="#page1" data-role="button" data-inline="true">OK</a>
+  </div>	<!-- contentDialog -->
+  
+  <!-- contentTransition is displayed after the form is submitted until a response is received back. -->
+  <div data-role="content" id="contentTransition" name="contentTransition">	
+   <div align="CENTER"><h4>Your report has been sent. Please wait.</h4></div>
+   <div align="CENTER"><img id="spin" name="spin" src="img/wait.gif"/></div>
+  </div>	<!-- contentTransition -->
+  
+  <!-- Although stored within page1 div tag, hdrConfirmation, contentConfirmation and ftrConfirmation represent a self contained 'confirmation page' -->
+  <div data-role="header"  id="hdrConfirmation" name="hdrConfirmation" data-nobackbtn="true">
+  	<h1>Report Created</h1>
+  </div>
+  
+  		
+  <script>
+   
+    $(document).ready(function() {
+    // Assign global variables
+      hdrMainVar = $('#hdrMain');
+      contentMainVar = $('#contentMain');
+      ftrMainVar = $('#ftrMain');
+      contentTransitionVar = $('#contentTransition');
+      stateLabelVar = $('#stateLabel');
+      whatLabelVar = $('#whatLabel');
+      stateVar = $('#state');
+      whatVar = $('#what');
+      form1Var = $('#form1');
+      confirmationVar = $('#confirmation');
+      contentDialogVar = $('#contentDialog');
+      hdrConfirmationVar = $('#hdrConfirmation');
+      contentConfirmationVar = $('#contentConfirmation');
+      ftrConfirmationVar = $('#ftrConfirmation'); 
+      inputMapVar = $('input[name*="_r"]');
+      
+      hideContentDialog();
+      hideContentTransition();
+      hideConfirmation();
+    }); 
+  
+    $('#buttonOK').click(function() {
+      hideContentDialog();
+      showMain();
+      return false;      
+    });
+   
+    
+    $('#form1').submit(function() {
+        var err = false;
+        // Hide the Main content
+        hideMain();
+        
+        // Reset the previously highlighted form elements
+        stateLabelVar.removeClass(MISSING); 
+        whatLabelVar.removeClass(MISSING);              
+        inputMapVar.each(function(index){              
+          $(this).prev().removeClass(MISSING); 
+        });
+        
+        // Perform form validation
+        inputMapVar.each(function(index){  
+        if($(this).val()==null || $(this).val()==EMPTY){  
+            $(this).prev().addClass(MISSING);            
+            err = true;
+          }          
+        });   
+        if(stateVar.val()==NO_STATE){           
+          stateLabelVar.addClass(MISSING);                     
+          err = true;
+        }            
+        if(whatVar.val()==null||whatVar.val()==EMPTY){   
+          whatLabelVar.addClass(MISSING);   
+          err = true;
+        }
+        
+        // If validation fails, show Dialog content
+        if(err == true){            
+          showContentDialog();
+          return false;
+        }        
+        
+        // If validation passes, show Transition content
+        showContentTransition();
+        
+        // Submit the form
+        $.post("/forms/requestProcessor.php", form1Var.serialize(), function(data){
+          confirmationVar.text(data);
+          hideContentTransition();
+          showConfirmation();
+        });        
+        return false;      
+    });    
+    
+  function hideMain(){
+    hdrMainVar.hide();
+    contentMainVar.hide();
+    ftrMainVar.hide();   
+   }
+   
+  function showMain(){
+    hdrMainVar.show();
+    contentMainVar.show();
+    ftrMainVar.show();
+   }
+   
+   function hideContentTransition(){
+    contentTransitionVar.hide();
+   }      
+   
+   function showContentTransition(){
+    contentTransitionVar.show();
+   }  
+   
+  function hideContentDialog(){
+    contentDialogVar.hide();
+   }   
+   
+   function showContentDialog(){
+    contentDialogVar.show();
+   }
+   
+   function hideConfirmation(){
+    hdrConfirmationVar.hide();
+    contentConfirmationVar.hide();
+    ftrConfirmationVar.hide();
+   }  
+   
+   function showConfirmation(){
+    hdrConfirmationVar.show();
+    contentConfirmationVar.show();
+    ftrConfirmationVar.show();
+   } 
+
+    
+  </script>
+<!-- page1 -->
+
+
+<!-- Page ends here -->
+</body>
+</html>
+
+    
+  
+
+  
