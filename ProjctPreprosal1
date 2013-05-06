@@ -1,0 +1,36 @@
+CS560 Knowledge Discovery and Management
+Project Pre-proposal 
+
+Project Goal and Objective
+The goal of this project is to develop a mobile application for an early childhood educational facility. The application would lessen the effort of a teacher (toddler to pre-K) in documenting a pre-school aged child’s day to day activities. 
+
+Motivation
+My 4 year old son attends a day care facility and the teacher currently marks up a check list type sheet which shows his participation in that day’s activities. My motivation to develop the application was to reduce the teacher’s paperwork and organizing burden in an efficient and paper-less fashion using a tablet. The application would facilitate touch screen check boxes, provision of taking a picture of the child’s work and then email/print the report based on a parent’s preference.
+
+Significance
+The application will reduce the teacher’s paperwork/organizing burden thereby allowing more time with the children. This will also serve as a green initiative due to less paper usage. The parent will have a traceable record of the child’s progress and milestones in the form of an email.
+
+System Features
+The daily activity sheet features 8 areas (language, cognitive skills/math, creative art, music/movement, motor skills, science/nature, social studies and computer lab) of early childhood education and 3 separate sections identifying the child’s lunch intake, nap duration, and remarks on which activity the child has enjoyed the most. 
+
+I intend to include these same features with a user friendly touch screen interface. I propose to summarize a month’s worth of activities in the 8 areas in a database. Depending on the calendar day, the teacher will have a template for that day’s activities. A drop down menu will enable the teacher to change/modify the activities from the dataset. An interface will be provided against each activity if the teacher intends to take a picture of the art and include in the report. I will use the following software:
+•  .Net Framework
+•  JAVASCRIPT
+•  HTML5 and CSS
+•  Agilefant
+•  Group common ontology using Protégé 
+
+RELATED WORK
+There are few available applications in Apple’s iTunes. The URL is provided in bibliography.
+
+ 
+
+
+
+
+BACKUP PROJECT
+As an alternative I propose to develop a newsstand type mobile application for a classroom setting. For students enrolled in a specific course and who subscribe to this application, the newsstand application will feature a peer to peer (P2P) network, enabling sharing of course related material such as publications, tutorials and mentoring. The application will be mobile/tablet compatible and is server/network independent. I have not researched if such applications exist as it is being proposed as an alternative. 
+
+BIBLIOGRAPHY
+1.  https://itunes.apple.com/us/app/daily...child-care/id502426621?mt=8
+
